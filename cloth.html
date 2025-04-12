@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LittleNest - Clothing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    /* === Background Animation === */
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      color: #333;
+      background: linear-gradient(-45deg, #ffe0f0, #fce4ec, #fff0f5, #ffe6fa);
+      background-size: 400% 400%;
+      animation: bgAnim 12s ease infinite;
+    }
+
+    @keyframes bgAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === Glassmorphic Header === */
+    header {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 8px 24px rgba(255, 192, 203, 0.2);
+      border-radius: 0 0 20px 20px;
+    }
+
+    header h1 {
+      color: #ff69b4;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    /* === Modern Glassy Nav === */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 8px rgba(255, 182, 193, 0.25);
+      animation: fadeInNav 1.4s ease forwards;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation-delay: 1.5s;
+    }
+
+    @keyframes fadeInNav {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ff69b4;
+      font-weight: 500;
+      font-size: 1.05rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      height: 2px;
+      width: 100%;
+      background-color: #ff69b4;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #e91e63;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .intro-section {
+  text-align: center;
+  padding: 3rem 2rem 1rem;
+  max-width: 900px;
+  margin: auto;
+  animation: floatIn 1.6s ease-out both;
+  background: rgba(255, 240, 245, 0.45);
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 182, 193, 0.3);
+}
+
+.intro-section h2 {
+  font-size: 2.8rem;
+  color: #ff69b4;
+  margin-bottom: 1rem;
+  animation: bounceIn 1s ease-in-out;
+}
+
+.intro-section p {
+  font-size: 1.15rem;
+  font-family: 'Baloo 2', cursive;
+  color: #6e4c57;
+  line-height: 1.7;
+  animation: fadeIn 2s ease-in;
+}
+
+/* Animations */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+    .section-title {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 2rem;
+      color: #e91e63;
+    }
+
+    .clothing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 3rem;
+    }
+
+    .clothing-card {
+      background: #fff0f7;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(255, 182, 193, 0.25);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 1rem;
+    }
+
+    .clothing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 30px rgba(255, 182, 193, 0.35);
+    }
+
+    .clothing-card .info {
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .clothing-card .info h3 {
+      font-size: 1.2rem;
+      color: #ff4081;
+    }
+
+    .clothing-card .info p {
+      font-size: 0.95rem;
+      color: #6e4c57;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #e91e63;
+      margin-top: 0.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #ff85c1;
+    }
+
+    footer {
+      background: rgba(255, 228, 225, 0.9);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6e4c57;
+      margin-top: 2rem;
+      border-top: 1px solid #ffc0cb;
+    }
+
+    .bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255, 182, 193, 0.3);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: riseBubbles linear infinite;
+    }
+
+    @keyframes riseBubbles {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <script>
+      const bubbleContainer = document.querySelector('.bubbles');
+      for (let i = 0; i < 30; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        const size = Math.random() * 40 + 10;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 10 + 5;
+        const delay = Math.random() * 10;
+
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${left}%`;
+        bubble.style.animationDuration = `${duration}s`;
+        bubble.style.animationDelay = `${delay}s`;
+
+        bubbleContainer.appendChild(bubble);
+      }
+    </script>
+  </div>
+<header>
+  <h1>LittleNest</h1>
+  <nav>
+    <a href="main.html">Home</a>
+    <a href="#">Toys</a>
+    <a href="#">Essentials</a>
+    <a href="#">Clothing</a>
+  </nav>
+</header>
+
+<!-- Intro Content Section -->
+<section class="intro-section">
+  <h2>Welcome to LittleNest Clothing</h2>
+  <p>
+    At LittleNest, we believe your baby's comfort and style should never be compromised. That's why we've curated an adorable collection of baby clothing that blends softness, safety, and cuteness all in one. Whether it's cozy onesies for nap time, charming dresses for special days, or warm hoodies for chilly evenings, we’ve got something for every tiny tot.
+  </p>
+</section>
+
+<!-- Product Listing -->
+<h2 class="section-title">Adorable Baby Clothing</h2>
+
+<section class="clothing-grid">
+  <div class="clothing-card">
+    <div class="info">
+      <h3>Cotton Onesie</h3>
+      <p>Soft and breathable onesie for daily wear.</p>
+      <div class="price">₹399</div>
+      <a href="#" class="cta-btn">Add to Cart</a>
+    </div>
+  </div>
+
+  <div class="clothing-card">
+    <div class="info">
+      <h3>Floral Dress</h3>
+      <p>Perfect for outings and photoshoots.</p>
+      <div class="price">₹699</div>
+      <a href="#" class="cta-btn">Add to Cart</a>
+    </div>
+  </div>
+
+  <div class="clothing-card">
+    <div class="info">
+      <h3>Winter Hoodie</h3>
+      <p>Keep your baby cozy with fleece-lined warmth.</p>
+      <div class="price">₹899</div>
+      <a href="#" class="cta-btn">Add to Cart</a>
+    </div>
+  </div>
+
+  <div class="clothing-card">
+    <div class="info">
+      <h3>Colorful Shorts</h3>
+      <p>Bright and comfy shorts for active little ones.</p>
+      <div class="price">₹299</div>
+      <a href="#" class="cta-btn">Add to Cart</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 LittleNest. All rights reserved.
+</footer>
+
+</body>
+</html>

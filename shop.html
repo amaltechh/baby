@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Babish Boutique - Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #ffeaf4, #fff6fa);
+      color: #444;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255, 240, 245, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff69b4;
+      font-size: 2.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      position: relative;
+      text-decoration: none;
+      color: #ff69b4;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      height: 2px;
+      width: 100%;
+      background-color: #ff69b4;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff85c1;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(rgba(255, 192, 203, 0.3), rgba(255, 240, 245, 0.7)), url('https://images.unsplash.com/photo-1584438784894-089d6a62b8b2?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      color: #fff;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero h2 {
+      background-color: rgba(255, 182, 193, 0.8);
+      color: #fff;
+      padding: 1.5rem 3rem;
+      font-size: 3rem;
+      border-radius: 25px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      animation: popIn 1.5s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 3rem;
+      border-radius: 25px;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
+    }
+
+    .product {
+      background: #fff0f5;
+      border-radius: 25px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .product img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.2rem;
+    }
+
+    .product-info h3 {
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+      color: #d63384;
+    }
+
+    .price {
+      color: #e91e63;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .buy-btn {
+      margin-top: 0.8rem;
+      display: inline-block;
+      background: #ff69b4;
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background: #ff1493;
+    }
+
+    .category-strip {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.2rem;
+      padding: 1.2rem 2rem;
+      margin: 3rem;
+      background: #fffafc;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+    }
+
+    .category-strip span {
+      white-space: nowrap;
+      background: #ffe4ec;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #e91e63;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .category-strip span:hover {
+      background: #ffd2e5;
+    }
+
+    .contact-section {
+      background: #fff0f5;
+      margin: 4rem 2rem;
+      padding: 3rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      color: #e91e63;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid #ffc1d9;
+      font-size: 1rem;
+    }
+
+    .contact-section button {
+      background: #ff69b4;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-section button:hover {
+      background: #ff1493;
+    }
+
+    footer {
+      background-color: rgba(255, 240, 245, 0.95);
+      padding: 1.8rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #e91e63;
+      border-top: 1px solid #ffc1d9;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Babish Boutique</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Cart</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Explore the Sweetest Styles Ever 🍬👗</h2>
+  </section>
+
+  <div class="category-strip">
+    <span>Baby Clothes</span>
+    <span>Feeding</span>
+    <span>Diapers</span>
+    <span>Bath Essentials</span>
+    <span>Nursery</span>
+    <span>Toys</span>
+  </div>
+  
+
+  <section class="products">
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71pFuL1VtjL._AC_UF894,1000_QL80_.jpg" alt="Baby Skincare Kit">
+      <div class="product-info">
+        <h3>Baby Skincare Kit</h3>
+        <p class="price">₹699</p>
+        <a class="buy-btn" href="javascript:void(0);" onclick="searchAndRedirect('Baby Skincare Kit')">Buy Now</a>
+
+      </div>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/61UxbTHp2KL._AC_UF894,1000_QL80_.jpg" alt="Soft Baby Blanket">
+      <div class="product-info">
+        <h3>Soft Baby Blanket</h3>
+        <p class="price">₹499</p>
+        <a class="buy-btn" href="javascript:void(0);" onclick="searchAndRedirect('soft baby Blanket')">Buy Now</a>
+
+      </div>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/51RhvUnUvXL._AC_UF894,1000_QL80_.jpg" alt="Feeding Bottle Set">
+      <div class="product-info">
+        <h3>Feeding Bottle Set</h3>
+        <p class="price">₹899</p>
+        <a class="buy-btn" href="javascript:void(0);" onclick="searchAndRedirect('Feeding Bottle set')">Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Contact Us 💌</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Babish Boutique. All rights reserved 💖 | Designed with 💅 by Babish Devs
+  </footer>
+  <script>
+    function searchAndRedirect(productName) {
+      const query = encodeURIComponent(`${productName} site:amazon.in OR site:firstcry.com OR site:hopscotch.in`);
+      const searchUrl = `https://www.google.com/search?q=${query}`;
+      window.open(searchUrl, '_blank');
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LittleNest - Baby Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #333;
+      transition: background-image 1s ease-in-out;
+    }
+
+    /* Splash screen */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff0f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 1s ease;
+    }
+
+    .splash-logo {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ff69b4;
+  animation: pop-in 1s ease, pulseLogo 2s infinite ease-in-out 1s;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseLogo {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+#splash.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+header {
+  background: rgba(255, 240, 245, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  /* Animation */
+  animation: slideDown 1.2s ease-in-out forwards;
+  transform: translateY(-100%);
+}
+
+@keyframes slideDown {
+  to {
+    transform: translateY(0);
+  }
+}
+
+header h1 {
+  color: #ff69b4;
+  font-size: 2rem;
+  font-weight: 700;
+
+  /* Animation */
+  animation: fadeInPop 1.5s ease forwards;
+  opacity: 0;
+  transform: scale(0.9);
+  animation-delay: 1.2s;
+}
+
+@keyframes fadeInPop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Adds the blur effect */
+  border-radius: 15px; /* Rounded corners for the glass effect */
+  padding: 10px 20px; /* Space around the content */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for the frosted look */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow to enhance depth */
+  
+  /* Entrance Animation */
+  animation: fadeInNav 1.4s ease forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeInNav {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: #ff69b4;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  /* Optional: Add slight bounce/pop on hover */
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 100%;
+  background-color: #ff69b4;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff85c1;
+  transform: translateY(-2px); /* slight lift on hover */
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+/* Keyframes */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeExpand {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hero Section */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideIn 1.4s ease forwards;
+  animation-delay: 2.3s;
+}
+
+.hero h2 {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #e91e63;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: scale(0.9);
+  animation: popIn 1.2s ease forwards;
+  animation-delay: 2.7s;
+}
+
+/* Tips Grid */
+.tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background-color: #ffeef8;
+  margin: 2rem;
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(255, 192, 203, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideIn 1.2s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.cta-btn {
+  background-color: #ff69b4;
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #ff85c1;
+  transform: scale(1.05);
+}
+
+/* Individual Tip Card */
+.tip {
+  background: #fff0f7;
+  border-radius: 24px;
+  box-shadow: 0 10px 20px rgba(255, 182, 193, 0.25);
+  overflow: hidden;
+  border: 2px dashed #ffb6c1;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  animation: popIn 0.8s ease forwards;
+  animation-delay: 1s;
+}
+
+.tip:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 30px rgba(255, 182, 193, 0.35);
+  background-color: #fff5fb;
+}
+
+/* Tip Image */
+.tip img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ffd1dc;
+  transition: transform 0.4s ease;
+}
+
+.tip:hover img {
+  transform: scale(1.07) rotate(-1deg);
+}
+
+/* Tip Info Text */
+.tip-info {
+  padding: 1.5rem;
+  font-family: 'Baloo 2', cursive;
+}
+
+.tip-info h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #ff4081;
+  text-shadow: 1px 1px 0 #ffc1e3;
+}
+
+.tip-info p {
+  font-size: 1rem;
+  color: #6e4c57;
+  line-height: 1.5;
+}
+
+/* Expanded View */
+.tips.active {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  padding: 4rem 3rem;
+  overflow-y: auto;
+  background: linear-gradient(to bottom right, #fff0f5, #ffe4ec);
+  animation: fadeExpand 0.7s ease forwards;
+  box-shadow: 0 0 60px rgba(255, 105, 180, 0.3);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modal Overlay */
+body.tips-opened::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1500;
+}
+
+/* Hide Tips Smoothly */
+.tips.hidden {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease;
+}
+
+
+
+
+
+    footer {
+      background: rgba(255, 228, 225, 0.9);
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 3rem;
+      color: #555;
+      border-top: 2px solid #ffc0cb;
+    }
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: 'Comic Sans MS', 'Fredoka', cursive;
+  font-size: 1rem;
+  z-index: 99;
+}
+
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: linear-gradient(to bottom right, #fff0f5, #ffe4ec);
+  box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+  border-radius: 18px;
+  padding: 0.7rem 0.4rem;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  animation: fadeInDropdown 0.6s ease forwards;
+  transform-origin: top center;
+}
+
+/* Dropdown items */
+.dropdown-content a {
+  display: block;
+  padding: 0.9rem 1.5rem;
+  color: #ff69b4;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-content a:hover {
+  background-color: #ffeaf5;
+  color: #ff1493;
+  transform: scale(1.08) rotate(-1deg);
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+  animation: wiggle 0.3s ease-in-out;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Pop-down animation */
+@keyframes fadeInDropdown {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Wiggle animation for links */
+@keyframes wiggle {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(-2deg); }
+  50% { transform: scale(1.05) rotate(2deg); }
+  75% { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+
+#welcome-avatar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+#welcome-avatar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#welcome-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.speech-bubble {
+  background: #fff0f5;
+  color: #ff4081;
+  padding: 0.6rem 1rem;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(255, 192, 203, 0.4);
+  animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Popup Panel */
+/* Popup Panel */
+.popup-panel {
+  position: fixed;
+  top: 50%;
+  left: -360px;
+  transform: translateY(-50%);
+  width: 360px;
+  max-width: 90%;
+  height: 540px;
+  max-height: 90vh;
+  background: linear-gradient(145deg, #fff0f5, #ffe4ec);
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid #ffc1da;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  animation: floatUp 0.8s ease-out;
+}
+
+/* Slide-in Animation */
+.popup-panel.show {
+  transform: translateY(-50%) translateX(380px);
+}
+
+/* Entry Animation */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.header {
+  background: linear-gradient(135deg, #ff80ab, #ff4081);
+  color: white;
+  padding: 20px 25px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 3px dashed #ffc0cb;
+  text-shadow: 1px 1px 2px #ffb6c1;
+  box-shadow: 0 4px 15px rgba(255, 128, 171, 0.3);
+  font-family: 'Comic Neue', cursive;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  animation: headerPop 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+
+@keyframes headerPop {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header:hover {
+  background: linear-gradient(135deg, #ff5c93, #ff70a6);
+  box-shadow: 0 6px 18px rgba(255, 128, 171, 0.5);
+  transform: scale(1.05);
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+
+.chat-area {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #ffc1da #fff;
+}
+
+.chat-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+  background: #ffc1da;
+  border-radius: 4px;
+}
+
+.chat-message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  font-family: 'Comic Neue', cursive;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #ff4081;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px 20px 0 20px; /* Rounded top and bottom-right corners */
+  max-width: 80%; /* Prevent the message from taking up too much space */
+  word-wrap: break-word; /* Ensure the message breaks correctly */
+  margin: 5px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 20px 20px 20px 0; /* Rounded top and bottom-left corners */
+  max-width: 80%;
+  word-wrap: break-word;
+  margin: 5px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: If you want to add smooth transitions for messages */
+.user-message, .bot-message {
+  transition: all 0.3s ease-in-out;
+}
+
+.user-message:hover, .bot-message:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.chat-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-input {
+  padding: 10px 15px;
+  background-color: #f7f4f7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input textarea {
+  flex: 1;
+  height: 50px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: 'Comic Sans MS', 'Poppins', cursive;
+  color: #6b6b6b;
+  background-color: #f1e4f3;
+  border: 2px solid #f7c0d3;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 6px rgba(255, 182, 193, 0.25);
+  caret-color: #ff69b4;
+}
+
+.chat-input textarea::placeholder {
+  color: #f4a6b0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.chat-input textarea:focus {
+  border-color: #ff80bf;
+  box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.3);
+  background-color: #fff5fa;
+}
+
+/* Close Button */
+.close-btn {
+  background-color: #ff80ab;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(255, 128, 171, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.close-btn:hover {
+  background-color: #ff5c93;
+  transform: scale(1.1) translateY(-50%);
+}
+
+.close-btn:active {
+  transform: scale(0.95) translateY(-50%);
+  background-color: #ff3366;
+}
+
+
+.suggested-questions {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.suggested-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.suggested-btn {
+  background-color: #ff80ab;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(255, 128, 171, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.suggested-btn:hover {
+  background-color: #ff5c93;
+  transform: scale(1.05);
+}
+
+.suggested-btn:active {
+  transform: scale(0.95);
+  background-color: #ff3366;
+}
+
+.remove-suggestion {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #ff3366;
+  font-weight: bold;
+  padding: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.remove-suggestion:hover {
+  color: #ff4081;
+}
+
+.remove-suggestion:active {
+  transform: scale(0.95);
+}
+
+.remove-btn {
+  background-color: #ff4081;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(255, 128, 171, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #ff5c93;
+  transform: scale(1.05);
+}
+
+.remove-btn:active {
+  transform: scale(0.95);
+  background-color: #ff3366;
+}
+
+.chat-input {
+  padding: 10px 15px;
+  background-color: #f7f4f7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.chat-input textarea {
+  flex: 1;
+  height: 50px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: 'Comic Sans MS', 'Poppins', cursive;
+  color: #6b6b6b;
+  background-color: #f1e4f3;
+  border: 2px solid #f7c0d3;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 6px rgba(255, 182, 193, 0.25);
+  caret-color: #ff69b4;
+}
+
+.chat-input textarea::placeholder {
+  color: #f4a6b0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.chat-input textarea:focus {
+  border-color: #ff80bf;
+  box-shadow: 0 0 8px 2px rgba(255, 105, 180, 0.3);
+  background-color: #fff5fa;
+}
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Splash screen -->
+  <div id="splash">
+    <h1 class="splash-logo">LittleNest</h1>
+  </div>
+
+  <div id="welcome-avatar">
+    <img src="images/icon.png" alt="Baby Avatar">
+    <div class="speech-bubble">Welcome back!</div>
+  </div>
+
+  <div id="popup-panel" class="popup-panel">
+    <div class="header">Chat with Us</div>
+    <div class="chat-area" id="chat-area">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div class="popup-content">
+      <div class="suggested-questions">
+        <div class="suggested-item">
+          <button class="suggested-btn" onclick="insertMessage('What baby products are on sale?')">What baby products are on sale?</button>
+          <span class="remove-suggestion" onclick="removeSuggestion(this)">&times;</span>
+        </div>
+        <div class="suggested-item">
+          <button class="suggested-btn" onclick="insertMessage('Do you offer baby clothing?')">Do you offer baby clothing?</button>
+          <span class="remove-suggestion" onclick="removeSuggestion(this)">&times;</span>
+        </div>
+        <div class="suggested-item">
+          <button class="suggested-btn" onclick="insertMessage('What are the best baby strollers?')">What are the best baby strollers?</button>
+          <span class="remove-suggestion" onclick="removeSuggestion(this)">&times;</span>
+        </div>
+        <div class="suggested-item">
+          <button class="suggested-btn" onclick="insertMessage('Can I return baby items?')">Can I return baby items?</button>
+          <span class="remove-suggestion" onclick="removeSuggestion(this)">&times;</span>
+        </div>
+        <div class="suggested-item">
+          <button class="suggested-btn" onclick="insertMessage('Do you offer gift cards?')">Do you offer gift cards?</button>
+          <span class="remove-suggestion" onclick="removeSuggestion(this)">&times;</span>
+        </div>
+        <button class="remove-btn" onclick="removeSuggestedQuestions()">Remove All</button>
+      </div>
+      <div class="chat-input">
+        <textarea placeholder="Type your message here..." id="message-input"></textarea>
+      </div>
+      <button class="close-btn" onclick="closeChat()">×</button>
+    </div>
+  </div>
+  
+  
+  
+  
+
+  
+  <header>
+    <h1>LittleNest</h1>
+    <nav>
+      <a href="#">Home</a>
+  
+      <div class="dropdown">
+        <a href="shop.html" class="dropbtn">Shop</a>
+        <div class="dropdown-content">
+            <a href="cloth.html">🧥 Clothing</a>
+<a href="#">🧸 Toys</a>
+<a href="#">🎀 Accessories</a>
+<a href="#">🛏️ Nursery</a>
+<a href="#">🍼 Feeding</a>
+<a href="#">🩺 Health & Safety</a>
+<a href="#">📚 Books</a>
+<a href="#">🎁 Gifts</a>
+<a href="#">💸 On Sale</a>
+
+            
+        </div>
+      </div>
+  
+      <a href="#contact">Contact</a>
+      <a href="login.html">Log Out</a>
+    </nav>
+  </header>
+  
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2 id="hero-heading">Adorable Finds for Your Little One</h2>
+      <p style="color: #e91e63;" id="hero-quote">Discover cozy, cute, and charming essentials curated just for babies and toddlers.</p>
+    </div>
+  </section>
+  
+  
+  
+  
+
+  <section class="tips hidden">
+    <!-- Your cards go here -->
+  
+  
+  <section class="tips">
+    <div class="tip">
+      <img src="images/tip1.jpg" alt="Sleep Schedule">
+      <div class="tip-info">
+        <h3>Establish a Sleep Routine</h3>
+        <p>Set a calming bedtime routine like a warm bath or lullaby. Babies thrive on predictable schedules.</p>
+      </div>
+    </div>
+  
+    <div class="tip">
+      <img src="images/tip2.jpg" alt="Healthy Feeding">
+      <div class="tip-info">
+        <h3>Healthy Feeding</h3>
+        <p>Breast milk or formula is essential for the first 6 months. Watch baby cues for hunger and fullness.</p>
+      </div>
+    </div>
+  
+    <div class="tip">
+      <img src="images/tip3.jpg" alt="Bonding">
+      <div class="tip-info">
+        <h3>Skin-to-Skin Bonding</h3>
+        <p>Holding your baby close boosts emotional connection and helps regulate their body temperature and heart rate.</p>
+      </div>
+    </div>
+  
+    <div class="tip">
+      <img src="images/tip4.jpg" alt="Safety First">
+      <div class="tip-info">
+        <h3>Baby Safety First</h3>
+        <p>Always use car seats properly and baby-proof your home early. Keep small items and sharp tools out of reach.</p>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <footer id="contact">
+    <p>&copy; 2025 LittleNest Baby Shop | Designed with love 💖</p>
+  </footer>
+
+  <!-- Background Image Changer -->
+  <script>
+    // Background slideshow
+    const backgrounds = [
+      'url("images/baby.jpg")',
+      'url("images/baby2.avif")',
+      'url("images/baby3.avif")',
+      'url("images/baby4.jpg")',
+    ];
+  
+    let index = 0;
+    setInterval(() => {
+      document.body.style.backgroundImage = backgrounds[index];
+      index = (index + 1) % backgrounds.length;
+    }, 3000);
+  
+    // Splash screen fade out
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+      }, 2000);
+    });
+  
+    // Scroll-triggered tips reveal
+  const headings = [
+    "Adorable Finds for Your Little One",
+    "Crafted with Love for Tiny Smiles",
+    "Soft, Safe, and Super Cute",
+    "Every Baby Deserves the Best",
+    "Snuggly Styles for Happy Tots"
+  ];
+
+  const quotes = [
+    "Discover cozy, cute, and charming essentials curated just for babies and toddlers.",
+    "Wrap your baby in love and softness, always.",
+    "From tiny socks to dreamy blankets—only the cutest!",
+    "Thoughtfully selected for the happiest hugs.",
+    "Let their first outfits be full of joy and color."
+  ];
+
+  let headingIndex = 0;
+  const headingEl = document.getElementById("hero-heading");
+  const quoteEl = document.getElementById("hero-quote");
+  
+  setInterval(() => {
+    headingEl.style.opacity = 0;
+    quoteEl.style.opacity = 0;
+  
+    setTimeout(() => {
+      headingIndex = (headingIndex + 1) % headings.length;
+      headingEl.textContent = headings[headingIndex];
+      quoteEl.textContent = quotes[headingIndex];
+      headingEl.style.opacity = 1;
+      quoteEl.style.opacity = 1;
+    }, 500);
+  }, 4500);
+
+
+
+  window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+  setTimeout(() => {
+    splash.classList.add("fade-out");
+
+    setTimeout(() => {
+      const welcomeAvatar = document.getElementById("welcome-avatar");
+      welcomeAvatar.classList.add("show");
+
+      // Disappear speech bubble text only
+      setTimeout(() => {
+        const bubble = welcomeAvatar.querySelector(".speech-bubble");
+        if (bubble) {
+          bubble.style.opacity = 0;
+          bubble.style.transition = "opacity 1s ease";
+        }
+      }, 2000);
+
+      // Open chat on avatar click
+      welcomeAvatar.addEventListener("click", () => {
+        const popup = document.getElementById("popup-panel");
+        popup.classList.add("show");
+        addBotMessage("Hello! How can I assist you today?");
+      });
+
+    }, 800);
+  }, 2000);
+});
+
+// Send message on Enter key
+document.getElementById("message-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    const input = e.target;
+    const message = input.value.trim();
+    if (message !== "") {
+      addUserMessage(message);
+      input.value = "";
+      setTimeout(() => {
+        addBotMessage("Thanks for your message! 😊");
+      }, 800);
+    }
+  }
+});
+
+// Add user message
+function addUserMessage(text) {
+  const chatArea = document.getElementById("chat-area");
+  const msg = document.createElement("div");
+  msg.className = "chat-message user-message";
+  msg.textContent = text;
+  chatArea.appendChild(msg);
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// Add bot message
+function addBotMessage(text) {
+  const chatArea = document.getElementById("chat-area");
+  const msg = document.createElement("div");
+  msg.className = "chat-message bot-message";
+  msg.textContent = text;
+  chatArea.appendChild(msg);
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+
+
+
+function closeChat() {
+  document.querySelector('.popup-panel').classList.remove('show');
+}
+
+
+
+function insertMessage(message) {
+  const chatArea = document.getElementById("chat-area");
+  const userMessage = document.createElement("div");
+  userMessage.classList.add("user-message");
+  userMessage.textContent = message;
+  chatArea.appendChild(userMessage);
+
+  // Generate the bot's response based on the clicked suggestion
+  setTimeout(() => {
+    generateBotResponse(message);
+  }, 500);
+}
+
+// Function to remove suggested questions
+function removeSuggestedQuestions() {
+  const suggestedQuestionsDiv = document.querySelector('.suggested-questions');
+  suggestedQuestionsDiv.innerHTML = ''; // Removes all suggested questions
+}
+
+// Function to generate bot response
+function generateBotResponse(message) {
+  const chatArea = document.getElementById("chat-area");
+  const botMessage = document.createElement("div");
+  botMessage.classList.add("bot-message");
+  
+  // Customize the bot's responses based on the user's message
+  let response = "";
+  if (message === "What baby products are on sale?") {
+    response = "We have great discounts on baby clothes, strollers, toys, and more! Check out our sale section.";
+  } else if (message === "Do you offer baby clothing?") {
+    response = "Yes! We offer a wide range of baby clothing from newborn to toddler sizes.";
+  } else if (message === "What are the best baby strollers?") {
+    response = "Our top baby strollers include the Graco Modes, UPPAbaby Vista, and Baby Jogger City Mini.";
+  } else if (message === "Can I return baby items?") {
+    response = "Yes, we offer a 30-day return policy on most baby items, as long as they are unused and in original packaging.";
+  } else if (message === "Do you offer gift cards?") {
+    response = "Yes, we offer both physical and e-gift cards in various denominations.";
+  } else {
+    response = "Sorry, I didn’t quite understand that. Can you please rephrase?";
+  }
+  
+  botMessage.textContent = response;
+  chatArea.appendChild(botMessage);
+  
+  // Scroll to the bottom of the chat area
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+
+function removeSuggestion(element) {
+  const suggestionItem = element.closest('.suggested-item');
+  suggestionItem.remove();
+}
+  </script>
+  
+</body>
+</html>

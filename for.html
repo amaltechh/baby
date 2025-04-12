@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgot Password - CITYLERT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdf1f4, #ffe3ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+
+    .bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255, 182, 193, 0.3);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: riseBubbles linear infinite;
+    }
+
+    @keyframes riseBubbles {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+    }
+    .forgot-wrapper {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      animation: slideIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .forgot-wrapper h2 {
+      text-align: center;
+      color: #ff4d8a;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .forgot-wrapper p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #ff4d8a;
+      box-shadow: 0 0 0 2px rgba(255, 77, 138, 0.2);
+    }
+
+    .forgot-wrapper button {
+      width: 100%;
+      background-color: #ff4d8a;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .forgot-wrapper button:hover {
+      background-color: #ff3977;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: #ff4d8a;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="bubbles">
+        <script>
+          const bubbleContainer = document.querySelector('.bubbles');
+          for (let i = 0; i < 50; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 40 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 10;
+    
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${left}%`;
+            bubble.style.animationDuration = `${duration}s`;
+            bubble.style.animationDelay = `${delay}s`;
+    
+            bubbleContainer.appendChild(bubble);
+          }
+        </script>
+      </div>
+      
+  <div class="forgot-wrapper">
+    <h2>Forgot Password</h2>
+    <p>Enter your email to receive a password reset link.</p>
+    
+    <form id="forgotForm">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required placeholder="you@example.com">
+      </div>
+
+      <button type="submit">Send Reset Link</button>
+    </form>
+
+    <a class="back-link" href="login.html">Back to Login</a>
+  </div>
+
+  <script>
+    document.getElementById('forgotForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+
+      if (email) {
+        alert('Reset link sent to ' + email);
+        // You can add actual password reset logic here
+      }
+    });
+  </script>
+
+</body>
+</html>
